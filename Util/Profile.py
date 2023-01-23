@@ -71,12 +71,9 @@ class Profile():
         # 输出日志
         Util.log.info('[  提示  ]:用户的sec_id=%s' % self.sec)
 
-        # 旧接口于22/12/23失效
-        # post_url = 'https://www.iesdouyin.com/web/api/v2/aweme/post/?sec_uid=%s&count=35&max_cursor=0&aid=1128&_signature=PDHVOQAAXMfFyj02QEpGaDwx1S&dytk=' % (
-        #     self.sec)
         # 23/1/11
         # 暂时使用不需要xg的接口
-        post_url = 'https://www.iesdouyin.com/aweme/v1/web/aweme/post/?sec_user_id=%s&count=35&max_cursor=0&aid=1128' % (
+        post_url = 'https://www.iesdouyin.com/aweme/v1/web/aweme/post/?sec_user_id=%s&count=35&max_cursor=0&aid=1128&version_name=23.5.0&device_platform=android&os_version=2333' % (
             self.sec)
         post_name_json = Util.json.loads(Util.requests.get(
             url=post_url, headers=self.headers).content.decode())
@@ -84,8 +81,6 @@ class Profile():
         # 因为抖音页面分离技术，最初获取的网页信息没有经过js渲染，无法获取like模式下的用户名，故均用post模式获取用户名
         try:
             self.nickname = post_name_json['aweme_list'][0]['author']['nickname']
-            # self.nickname = Util.etree.HTML(r.text).xpath('//*[@id="douyin-right-container"]/div[2]/div/div/div[1]/div[2]/div[1]/h1/span/span/span/span/span/span/text()')[0]
-            # self.nickname = html['aweme_list'][0]['author']['nickname']
         except Exception as e:
             # 2022/10/19
             # like模式需要保存该账户昵称的文件夹下，如果是空作品则最少需要发布一条作品方可获取该账户昵称

@@ -15,3 +15,10 @@ if __name__ == '__main__':
     profile.getProfile(cmd.setting())
 	# 如果需要定时下载则注释这个input
     input('[  完成  ]:已完成批量下载，输入任意键后退出:')
+
+    """git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/tianhai121/douyin_download.git
+git push -u origin main"""
